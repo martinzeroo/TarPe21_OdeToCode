@@ -48,7 +48,20 @@ html {
 
 button.accept-policy {
   font-size: 1rem;
-  line-height: inherit;
+  line-height: inherit;.review {
+    padding: 2px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.review h4 {
+    color: maroon;
+    padding: 5px;
+    background: #cccc99
+}
+
+.review p {
+    font-size: .8em;
 }
 
 /* Sticky footer styles
@@ -69,3 +82,18 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.review {
+    padding: 2px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+    .review h4 {
+        color: maroon;
+        padding: 5px;
+        background: #cccc99
+    }
+
+    .review p {
+        font-size: .8em;
+    }
