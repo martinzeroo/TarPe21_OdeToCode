@@ -14,5 +14,6 @@ namespace OdeToCode.Data
         {
         }
         public DbSet<OdeToCode.Models.RestaurantReview> RestaurantReview { get; set; }
+        public DbSet<Resturant> Restaurants { get; set; }
     }
 }
