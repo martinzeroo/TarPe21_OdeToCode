@@ -1,12 +1,24 @@
-﻿@{
+﻿@model IEnumerable<RestaurantListViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<form method="get">
+    <input type="search" name="searchTerm" value=""/>
+    <input type="submit" value="Search by name"/>
+</form>
 
 @foreach (var item in Model)
 {
     <div>
         <h4>@item.Name</h4>
-        <div>@item.City,@item.Country</div>
+        <div>
+            @item.City, @item.Country
+        </div>
+        <div>
+            Reviews: @item.CountOfReviews
+        </div>
         <hr />
     </div>
 }
