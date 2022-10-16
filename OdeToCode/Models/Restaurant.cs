@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace OdeToCode.Models
 {
-    public class Resturant
+    public class Restaurant
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         public string Names { get; set; }
 

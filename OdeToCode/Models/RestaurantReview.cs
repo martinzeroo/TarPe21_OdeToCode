@@ -8,8 +8,8 @@ namespace OdeToCode.Models
     public class RestaurantReview
     {
         public int Id { get; set; }
-        public string Rating { get; set; }
+        public int Raiting { get; set; }
         public string Body { get; set; }
-        public string RestaurantId { get; set; }
+        public int RestaurantId { get; set; }
     }
 }
