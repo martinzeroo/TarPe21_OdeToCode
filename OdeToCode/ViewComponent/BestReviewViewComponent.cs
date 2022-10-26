@@ -12,7 +12,7 @@ namespace OdeToCode.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(IList<RestaurantReview> reviews)
         {
             var bestReview = from r in reviews
-                             orderby r.Raiting descending
+                             orderby r.Rating descending
                              select r;
 
             return View(bestReview.First());

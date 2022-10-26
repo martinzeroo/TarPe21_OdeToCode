@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OdeToFood.Models.RestaurantReview>
+﻿@model IEnumerable<OdeToCode.Models.RestaurantReview>
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,14 +8,7 @@
 }
 @foreach (var item in Model)
 {
-    <div class="review">
-        <h4>@item.Name</h4>
-        <span>@item.Rating</span>
-        <p>@item.City, @item.Country</p>
-        <span class="right">
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-        </span>
-    </div>
+    <partial name="_Review" model="item" />
 }
 
 <p>

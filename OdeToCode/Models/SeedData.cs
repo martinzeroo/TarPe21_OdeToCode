@@ -42,7 +42,7 @@ namespace OdeToCode.Models
                         Country = "Sweden",
                         Reviews =
                             new List<RestaurantReview> {
-                            new RestaurantReview { Raiting = 9, Body = "Great Food!"} 
+                            new RestaurantReview { Rating = 9, Name = "Great Food!"} 
                             }
                     }
                 );
