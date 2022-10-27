@@ -1,16 +1,1 @@
-﻿@model IEnumerable<OdeToCode.Models.RestaurantReview>
-@{
-    ViewData["Title"] = "Index";
-}
-<h1>The Latest Reviews</h1>
-@section featured {
-    We are showing the latest @Model.Count() reviews.
-}
-@foreach (var item in Model)
-{
-    <partial name="_Review" model="item" />
-}
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+﻿
