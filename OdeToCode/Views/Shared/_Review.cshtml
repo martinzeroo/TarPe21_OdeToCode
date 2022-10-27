@@ -1,11 +1,9 @@
-﻿@*@Model OdeToCode.Models.RestaurantReview
-
+﻿@model OdeToCode.Models.RestaurantReview
 <div class="review">
     <h4>@Model.Name</h4>
-    <span>@Model.Raiting</span>
+    <span>@Model.Rating</span>
     <p>@Model.City, @Model.Country</p>
-
-    <span>
-        @Html.ActionLink("Edit", "Edit","Reviews", new { id = Model.Id })
+    <span class="right">
+        @Html.ActionLink("Edit", "Edit", "Reviews", new { id = Model.Id })
     </span>
-</div>*@
+</div>
