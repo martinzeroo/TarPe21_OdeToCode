@@ -4,7 +4,7 @@ using OdeToCode.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-namespace OdeToFood.Controllers
+namespace OdeToCode.Controllers
 {
     public class ReviewsController : Controller
 	{
