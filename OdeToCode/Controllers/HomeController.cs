@@ -12,7 +12,6 @@ namespace OdeToCode.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ApplicationDbContext _db;
-
 		public HomeController(ApplicationDbContext dbContext)
 		{
 			_db = dbContext;
@@ -20,10 +19,19 @@ namespace OdeToCode.Controllers
 
 		public IActionResult Index()
 		{
-			var model = _db.Restaurants.ToList();
+			var model = from r in _db.Restaurants
+						orderby r.Reviews.Average(review => review.Rating)
+						select new RestaurantListViewModel
+						{
+							Id = r.Id,
+							Name = r.Name,
+							City = r.City,
+							Country = r.Country,
+							CountOfReviews = r.Reviews.Count()
+						};
+
 			return View(model);
 		}
-
 		public IActionResult Privacy()
 		{
 			return View();
