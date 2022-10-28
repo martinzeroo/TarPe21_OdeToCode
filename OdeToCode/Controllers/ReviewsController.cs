@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OdeToCode.Data;
 using OdeToCode.Models;
+using OdeToCode.Models.Review_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,14 +45,12 @@ namespace OdeToCode.Controllers
 			}
 			return View(review);
 		}
-
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
 			{
 				return NotFound();
 			}
-
 			var review = await _context.RestaurantReviews.FindAsync(id);
 			if (review == null)
 			{
@@ -61,18 +60,22 @@ namespace OdeToCode.Controllers
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, RestaurantReview review)
+		public async Task<IActionResult> Edit(int id, RestaurantReviewEditViewModel review)
 		{
 			if (id != review.Id)
 			{
 				return NotFound();
 			}
-
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_context.Update(review);
+
+					var currentReview = await _context.RestaurantReviews.FindAsync(id);
+					currentReview.Body = review.Body;
+					currentReview.Rating = review.Rating;
+					_context.Entry(currentReview).State = EntityState.Modified;
+					//_context.Update(review);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)

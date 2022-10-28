@@ -60,7 +60,7 @@ namespace OdeToCode
             {
                 endpoints.MapControllerRoute(
                     name: "cuisine",
-                    pattern: "{cuisine}/{name}",
+                    pattern: "cuisine/{name}",
                     defaults: new
                     {
                         controller = "Cuisine",

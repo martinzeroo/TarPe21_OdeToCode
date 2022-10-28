@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OdeToCode.Migrations
 {
-    public partial class Inital : Migration
+    public partial class intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace OdeToCode.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Names = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -168,20 +168,24 @@ namespace OdeToCode.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RestaurantReview",
+                name: "RestaurantReviews",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Raiting = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rating = table.Column<int>(type: "int", nullable: false),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RestaurantId = table.Column<int>(type: "int", nullable: false)
+                    RestaurantId = table.Column<int>(type: "int", nullable: false),
+                    ReviewerName = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RestaurantReview", x => x.Id);
+                    table.PrimaryKey("PK_RestaurantReviews", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RestaurantReview_Restaurants_RestaurantId",
+                        name: "FK_RestaurantReviews_Restaurants_RestaurantId",
                         column: x => x.RestaurantId,
                         principalTable: "Restaurants",
                         principalColumn: "Id",
@@ -228,8 +232,8 @@ namespace OdeToCode.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RestaurantReview_RestaurantId",
-                table: "RestaurantReview",
+                name: "IX_RestaurantReviews_RestaurantId",
+                table: "RestaurantReviews",
                 column: "RestaurantId");
         }
 
@@ -251,7 +255,7 @@ namespace OdeToCode.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "RestaurantReview");
+                name: "RestaurantReviews");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

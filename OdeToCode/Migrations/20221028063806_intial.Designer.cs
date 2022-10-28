@@ -10,8 +10,8 @@ using OdeToCode.Data;
 namespace OdeToCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221016143236_Inital")]
-    partial class Inital
+    [Migration("20221028063806_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,7 +234,7 @@ namespace OdeToCode.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Names")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -252,17 +252,29 @@ namespace OdeToCode.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Raiting")
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReviewerName")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("RestaurantReview");
+                    b.ToTable("RestaurantReviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
