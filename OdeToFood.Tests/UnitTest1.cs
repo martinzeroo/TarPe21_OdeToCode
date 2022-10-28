@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace OdeToFood.Tests
+namespace OdeToCode.Tests
 {
     [TestClass]
     public class UnitTest1
