@@ -179,7 +179,7 @@ namespace OdeToCode.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RestaurantId = table.Column<int>(type: "int", nullable: false),
-                    ReviewerName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ReviewerName = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
