@@ -10,8 +10,8 @@ using OdeToCode.Data;
 namespace OdeToCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221028063806_intial")]
-    partial class intial
+    [Migration("20221101213559_intital")]
+    partial class intital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,16 +250,9 @@ namespace OdeToCode.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Body")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -267,8 +260,9 @@ namespace OdeToCode.Migrations
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReviewerName")
-                        .HasColumnType("int");
+                    b.Property<string>("ReviewerName")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
 
                     b.HasKey("Id");
 
