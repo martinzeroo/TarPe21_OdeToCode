@@ -15,7 +15,7 @@ $(function () {
         };
 
         $.ajax(options).done(function (data) {
-            var $target = $($form.attr("data-oft-target"));
+            var $target = $($form.attr("data-otf-target"));
             var $newHtml = $(data)
             $target.replaceWith($newHtml)
             $newHtml.effect("highlight")
@@ -49,8 +49,8 @@ $(function () {
             type: "get"
         };
         $.ajax(options).done(function (data) {
-            var target = $a.parents("div.pagedList").attr("data-oft-target");
-            $(target).repalceWith(data);
+            var target = $a.parents("div.pagedList").attr("data-otf-target");
+            $(target).replaceWith(data);
         })
         return false;
     }
