@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using OdeToCode.Data;
 using OdeToCode.Models;
@@ -56,6 +57,7 @@ namespace OdeToCode.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SeedData.ROLE_ADMIN)]
         public async Task<IActionResult> Create([Bind("Id,Name,City,Country")] Restaurant restaurant)
         {
             if (ModelState.IsValid)

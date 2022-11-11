@@ -5,7 +5,7 @@ namespace OdeToCode.Models
 {
     public class OdeToCodeRole : IdentityRole
     {
-        [StringLength(128,MinimumLength =1)]
+        [StringLength(128, MinimumLength = 1)]
         public string DisplayName { get; set; }
     }
 }
