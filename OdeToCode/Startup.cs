@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OdeToCode.Data;
-
+using OdeToCode.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace OdeToCode
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			SetupAppData(app, env);
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -74,6 +76,43 @@ namespace OdeToCode
 																	pattern: "{controller=Home}/{action=Index}/{id?}");
 				endpoints.MapRazorPages();
 			});
-		}
+
+
+			private void SetupAppData(IApplicationBuilder app, IWebHostEnvironment env)
+			{
+				using var serviceScope = app
+					.ApplicationServices
+					.GetRequiredService<IServiceScopeFactory>()
+					.CreateScope();
+				using var userManager = serviceScope
+					.ServiceProvider
+					.GetService<UserManager<OdeToCodeUser>>();
+				using var roleManager = serviceScope
+					.ServiceProvider
+					.GetService<RoleManager<OdeToCodeRole>>();
+				using var context = serviceScope
+						.ServiceProvider.GetService<ApplicationDbContext>();
+				if (context == null)
+				{
+					throw new ArgumentException("Problem in services. Can not initialize ApplicationDbContext");
+				}
+				while(true)
+				{
+					try
+					{
+						context.Database.OpenConnection();
+						context.Database.CloseConnection();
+						break;
+					}
+					catch (SqlException e)
+					{
+						if (e.Message.Contains("The login failed.")) { break; }
+						System.Threading.Thread.Sleep(1000);
+					}
+				}
+				SeedData.SeedIdentity(userManager, roleManager);
+			}
+
+        }
 	}
 }

@@ -8,16 +8,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using X.PagedList;
+using Microsoft.AspNetCore.Authorization;
+
 namespace OdeToCode.Controllers
 {
-	public class HomeController : Controller
+    [Authorize(Roles = "administrators,sales")]
+    public class HomeController : Controller
 	{
 		private readonly ApplicationDbContext _db;
 		public HomeController(ApplicationDbContext dbContext)
 		{
 			_db = dbContext;
 		}
-		public IActionResult Autocomplete(string term)
+
+        [AllowAnonymous]
+        public IActionResult Autocomplete(string term)
 		{
 			var model = _db.Restaurants
 				.Where(r => r.Name.StartsWith(term))
@@ -26,7 +31,8 @@ namespace OdeToCode.Controllers
 			return Json(model);
 		}
 
-		public IActionResult Index(string searchTerm = null, int page = 1)
+        [AllowAnonymous]
+        public IActionResult Index(string searchTerm = null, int page = 1)
 		{
 			var model = _db.Restaurants
 				.OrderByDescending(r => r.Reviews.Average(review => review.Rating))
@@ -56,7 +62,7 @@ namespace OdeToCode.Controllers
 		public IActionResult About()
 		{
 			var model = new AboutModel();
-			model.Name = "Kristjan";
+			model.Name = "Martin";
 			model.Location = "Tallinn, Estonia";
 			return View(model);
 		}
